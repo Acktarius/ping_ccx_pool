@@ -1,0 +1,13 @@
+[Desktop Entry]
+#file to be place in ~/.local/share/applications folder
+Type=Application
+Name=Ping CCX pool
+#route to your script
+Exec=sudo bash -c '/opt/conceal-toolbox/ping_ccx_pool/ping_ccx_pool.sh ;  bash'
+#route to your icon
+Icon=pp.png
+Hidden=false
+NoDisplay=false
+Terminal=true
+Comment=Check average response time CCX pool 
+X-GNOME-Autostart-enabled=true
