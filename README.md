@@ -23,8 +23,10 @@ ideally place in the /opt folder, for CCX-BOX user : /opt/conceal-toolbox/ping_c
 
 # Launch in terminal 
 `cd /opt/conceal-toolbox/ping_ccx_pool`
+
 `sudo ./ping_ccx_pool.sh` 
 
 # Launch via shortcut and icon,
-place icon pp.png in ~/.icons
-and ping_pool.desktop in ~/.local/share/applications
+place icon **pp.png** in ~/.icons
+
+and place **ping_pool.desktop** in ~/.local/share/applications
