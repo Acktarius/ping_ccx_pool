@@ -6,9 +6,14 @@
 
 ## this script is delivered “as is” and I deny any and all liability for any damages arising out of using this script
 
-# Dependency
+# UBUNTU
+## Dependencies
 nping is needed, it is ussually part of nmap :
 `sudo apt install nmap`
+
+zenity is ussually install on Ubuntu, nevertheless if you want to try this script on other distro, you might need to install it :
+`sudo apt install zenity`
+
 
 # Install
 ideally place in the /opt folder, for CCX-BOX user : /opt/conceal-toolbox/ping_ccx_pool/
