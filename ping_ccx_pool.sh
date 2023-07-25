@@ -44,13 +44,17 @@ if [[ ! -f /bin/nping ]]; then
 echo -e "${ORANGE}NPING is needed for this script${GRIS}\nto install it: ${WHITE}sudo apt install nmap${TURNOFF}\n"
 exit
 fi
-
+#Test zenity available
+if [[ ! -f /bin/zenity ]]; then
+echo -e "${ORANGE}Zenity is needed for this script${GRIS}\nto install it: ${WHITE}sudo apt install zenity${TURNOFF}\n"
+exit
+fi
 
 #pools list
 pools=("pool.conceal.network" "3333" "conceal.cedric-crispin.com" "3364" "ccx.gntl.uk" "10012" "us.conceal.herominers.com" "1115" "pool.hashvault.pro" "3333")
 #ping pool function
 ping_pool () {
-artcc=$(nping --tcp -p ${pools[ $(( $1 + 1 )) ]} -c 3 ${pools[$1]} | grep "Avg rtt" | cut -d ":" -f 4 | tr -s " " | cut -d "." -f 1 | xargs)
+artcc=$(nping --tcp -p ${pools[ $(( $1 + 1 )) ]} -c 5 ${pools[$1]} | grep "Avg rtt" | cut -d ":" -f 4 | tr -s " " | cut -d "." -f 1 | xargs)
 echo "$artcc"
 }
 
@@ -95,7 +99,9 @@ i=0
 while [[ i -le ${#list} ]]
 do
 x=$(( 2 * ${list:$i:1} - 2 ))
+echo -ne "${GRIS}# running test for ${ORANGE}${pools[$x]}${TURNOFF}\033[0K\r"
 results+=($(ping_pool $x)":"${pools[$x]})
+sleep 1
 i=$(( i+2 ))
 done
 
@@ -110,11 +116,11 @@ for k in "${!results[@]}"
 do
 R=$(echo "${results[$k]}" | cut -d ":" -f 2)
 T=$(echo "${results[$k]}" | cut -d ":" -f 1)
-echo -e "\t$T ms \t\t\t$R"
+echo -e "\t$T ms \t\t$R"
 done
 ) | sort -t$'\t' -k2 -n
 echo -e "#                                                                  #"
 echo -e "${GRIS}####################################################################${TURNOFF}"
 echo -e "\n"
 unset results
-
+sleep 2
