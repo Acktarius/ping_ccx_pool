@@ -128,7 +128,7 @@ unset results
 sleep 5
 echo -e "press ${WHITE}Ctrl-C${TURNOFF} to exit"
 t=0
-for t in {1..10}; do
+for t in {0..10}; do
 sleep 1
 echo -ne "auto exit in $(( 10-${t} )) seconds \033[0K\r"
 done
