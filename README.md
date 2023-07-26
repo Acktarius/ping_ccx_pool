@@ -9,9 +9,11 @@
 # UBUNTU
 ## Dependencies
 nping is needed, it is ussually part of nmap :
+
 `sudo apt install nmap`
 
 zenity is ussually install on Ubuntu, nevertheless if you want to try this script on other distro, you might need to install it :
+
 `sudo apt install zenity`
 
 

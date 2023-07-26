@@ -133,4 +133,3 @@ sleep 1
 echo -ne "auto exit in $(( 10-${t} )) seconds \033[0K\r"
 done
 unset t
-exit 0
