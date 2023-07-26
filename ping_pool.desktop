@@ -3,7 +3,7 @@
 Type=Application
 Name=Ping CCX pool
 #route to your script
-Exec=sudo bash -c '/opt/conceal-toolbox/ping_ccx_pool/ping_ccx_pool.sh ;  bash'
+Exec=sudo bash -c '/opt/conceal-toolbox/ping_ccx_pool/ping_ccx_pool.sh ;  exit'
 #route to your icon
 Icon=pp.png
 Hidden=false

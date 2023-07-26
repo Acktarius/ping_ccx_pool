@@ -104,6 +104,7 @@ results+=($(ping_pool $x)":"${pools[$x]})
 sleep 1
 i=$(( i+2 ))
 done
+unset i
 
 #Results
 echo -e "${GRIS}#                                                                  #"
@@ -123,4 +124,13 @@ echo -e "#                                                                  #"
 echo -e "${GRIS}####################################################################${TURNOFF}"
 echo -e "\n"
 unset results
-sleep 2
+#exit
+sleep 5
+echo -e "press ${WHITE}Ctrl-C${TURNOFF} to exit"
+t=0
+for t in {1..10}; do
+sleep 1
+echo -ne "auto exit in $(( 10-${t} )) seconds \033[0K\r"
+done
+unset t
+exit 0
