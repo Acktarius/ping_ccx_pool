@@ -52,24 +52,24 @@ fi
 
 #pools list
 declare -A poolAndPort=(
-[1,0]=".conceal.network" [1,00]="pool" [1,1]="3333" \
-[2,0]=".cedric-crispin.com" [2,00]="conceal" [2,1]="3364" \
-[3,0]=".fastpool.xyz" [3,00]="us" [3,01]="eu" [3,02]="sg" [3,1]="10167" \
-[4,0]=".gntl.uk" [4,00]="ccx" [4,1]="40012" \
-[5,0]=".conceal.herominers.com" [5,00]="us" [5,01]="au" [5,02]="de" [5,03]="fi" [5,04]="us2" [5,05]="ca" [5,06]="ru" [5,1]="1115" \
-[6,0]=".hashvault.pro" [6,00]="pool" [6,1]="3333")
+[1,0]="conceal.network" [1,00]="pool." [1,1]="3333" \
+[2,0]="cedric-crispin.com" [2,00]="conceal." [2,1]="3364" \
+[3,0]="fastpool.xyz" [3,00]="us." [3,01]="eu." [3,02]="sg." [3,1]="10167" \
+[4,0]="gntl.uk" [4,00]="ccx." [4,1]="40012" \
+[5,0]="conceal.herominers.com" [5,00]="us." [5,01]="au." [5,02]="de." [5,03]="fi." [5,04]="us2." [5,05]="ca." [5,06]="ru." [5,1]="1115" \
+[6,0]="hashvault.pro" [6,00]="pool." [6,1]="3333")
 #pool list fort zenity
 poolZen(){
         for p in {1..6}; do
-        echo -e "FALSE $p ${poolAndPort["$p",0]#*.} "
+        echo -e "FALSE $p ${poolAndPort["$p",0]} "
         done
         echo -e "FALSE 7 other "
 }
 subZenList(){
-        echo -e "TRUE 0 ${poolAndPort["$1",00]} "
+        echo -e "TRUE 0 ${poolAndPort["$1",00]%*.} "
         s=1
-        while  [[ "${poolAndPort["$1",0"$s"]}" != "" ]]; do
-        echo -e "FALSE $s ${poolAndPort["$1",0"$s"]} "
+        while  [[ -n "${poolAndPort["$1",0"$s"]}" ]]; do
+        echo -e "FALSE $s ${poolAndPort["$1",0"$s"]%*.} "
         ((s++))
         done
         unset s
@@ -81,8 +81,14 @@ subDomainSwapper () {
 #Zenity SubDomain Swapper
 
 subDomainToSwap(){
-local sub=$(zenity --list --radiolist --height 320 --width 400 --title "Pick Subdomain for ${poolAndPort["$1",0]#*.}" --timeout 15 --column "Select" --column "#" --column "SubDomain" $(subZenList $1))
+local sub=$(zenity --list --radiolist --height 320 --width 400 --title "Pick Subdomain for ${poolAndPort["$1",0]}" --timeout 15 --column "Select" --column "#" --column "SubDomain" $(subZenList $1))
+if [[ $1 -eq 3 ]] && [[ $sub -eq 1 ]]; then
+#FastPool Europe
+poolAndPort[3,00]=""
+else
 subDomainSwapper $1 $sub
+fi
+
 }
 
 #ping pool function
