@@ -1,7 +1,7 @@
 # ping_ccx_pool
 *return average response time for selected Conceal mining pool*
 ### this file is subject to Licence
-### Copyright (c) 2023, Acktarius
+### Copyright (c) 2023-2024, Acktarius
 
 
 ## this script is delivered “as is” and I deny any and all liability for any damages arising out of using this script
