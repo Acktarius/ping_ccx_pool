@@ -1,7 +1,7 @@
 #!/bin/bash
 ################################################################################
 # this file is subject to Licence
-#Copyright (c) 2023, Acktarius
+#Copyright (c) 2023-2024 Acktarius
 ################################################################################
 #Couleurs
 case "$TERM" in
